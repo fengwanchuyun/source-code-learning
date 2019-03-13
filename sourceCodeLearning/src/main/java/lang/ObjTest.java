@@ -73,7 +73,8 @@ public class ObjTest implements Cloneable{
 //        System.out.println("o2.name="+o2.getName());
 //        System.out.println("o2.age="+o2.getAge());
 
-        System.runFinalization();
+//        System.runFinalization();
+
 
     }
 
