@@ -26,7 +26,9 @@ public class StrTest {
 
 //        System.out.println(str1.equals(str1.trim()));
 //        String.format(str1, );
-        System.out.println();
+//        Boolean b = false;
+        String intern = str1.intern();
+        System.out.println(intern);
 
 
     }
