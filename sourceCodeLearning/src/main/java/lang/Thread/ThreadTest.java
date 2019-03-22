@@ -3,6 +3,9 @@ package lang.Thread;
 import java.util.ArrayList;
 
 public class ThreadTest {
+
+    private static Object obj = new Object();
+
     public static void main(String[] args) throws InterruptedException {
 //        Thread thread = Thread.currentThread();
 //        thread.setName("no_main");
@@ -46,72 +49,54 @@ public class ThreadTest {
 //        //测试线程是否已经中断。线程的 中断状态 不受该方法的影响。
 //        System.out.println(thread.isInterrupted());
 
-        ArrayList<Product> list = new ArrayList<>();
+        //线程的run()方法是由java虚拟机直接调用的，如果我们没有启动线程（没有调用线程的start()方法）而是在应用代码中直接调用run()方法，
+        //那么这个线程的run()方法其实运行在当前线程（即run()方法的调用方所在的线程）之中，而不是运行在其自身的线程中，从而违背了创建线程的初衷
+//        TestRunThread testRunThread1 = new TestRunThread();
+//        testRunThread1.run();
+//        System.out.println("当前运行run方法的线程:"+Thread.currentThread().getName());
+//        TestRunThread testRunThread2 = new TestRunThread();
+//        testRunThread2.start();
 
-        Producer producer = new Producer(list);
-        Consumer consumer = new Consumer(list);
-        for(int i=0;i<=10;i++){
-            new Thread(producer).start();
-            new Thread(consumer).start();
-        }
 
+
+
+//        ArrayList<Product> list = new ArrayList<>();
+//
+//        Producer producer = new Producer(list);
+//        Consumer consumer = new Consumer(list);
+//        for(int i=0;i<=10;i++){
+//            new Thread(producer).start();
+//            new Thread(consumer).start();
+//        }
+        //wait()的作用是让当前线程由“运行状态”进入“等待(阻塞)状态”的同时，也会释放同步锁。而sleep()的作用是也是让当前线程由“运行状态”进入到“休眠(阻塞)状态”。
+        //wait()会释放对象的同步锁，而sleep()则不会释放锁。
+        ThreadA thread1 = new ThreadA("111");
+        ThreadA thread2 = new ThreadA("222");
+
+        thread1.start();
+        thread2.start();
     }
 
+    static class ThreadA extends Thread{
+        public ThreadA(String name) {
+            super(name);
+        }
 
+        public void run(){
+            synchronized(obj){
+                for(int i = 0;i < 10;i++){
+                    System.out.printf("%s: %d\n", this.getName(), i);
+                    if(i%4 == 0){
+                        try {
+                            Thread.sleep(100);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
 
-//    class Producer implements Runnable{
-//        private List<Product> list;
-//        public Producer(List<Product> list) {
-//            this.list = list;
-//        }
-//
-//        @Override
-//        public void run() {
-//            if(list.size() >= 10){
-//                synchronized (list){
-//                    try {
-//                        System.out.println("库存已满，等待消费者消费");
-//                        list.wait();
-//                    } catch (InterruptedException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//            }else {
-//                list.add(new Product());
-//                System.out.println("生产者生产一个产品");
-//                synchronized(list) {
-//                    list.notifyAll();
-//                }
-//            }
-//
-//        }
-//    }
-
-//    class Consumer implements Runnable{
-//        private List<Product> list;
-//        public Consumer(List<Product> list) {
-//            this.list = list;
-//
-//        }
-//        @Override
-//        public void run() {
-//            if (list.size() == 0){
-//                synchronized (list){
-//                    try {
-//                        System.out.println("产品被全部消费，等待生产者生产！");
-//                        list.wait();
-//                    } catch (InterruptedException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//            }else {
-//                System.out.println("消费者消费一个产品");
-//                list.remove(0);
-//                synchronized (list){
-//                    list.notifyAll();
-//                }
-//            }
-//        }
-//    }
+                }
+            }
+        }
+    }
 
 }
