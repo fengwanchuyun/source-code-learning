@@ -1,13 +1,25 @@
 package lang;
 
-import java.util.StringJoiner;
-
 public class StrTest {
+    String str = "hello";
+    char[] abc = {'a','b','c'};
+    public void exchange(String str,char[] abc){
+        str = "good";
+        abc[0] = 's';
+    }
 
     public static void main(String[] args) {
+        StrTest ex = new StrTest();
+        ex.exchange(ex.str,ex.abc);
+        System.out.println(ex.str+" and "+ex.abc[0]);
 
-        String str1 = "heLlo world";
-        String str2 = "  hello world1   ";
+        String str1 = "hello";
+        String str2 = "hel"+new String("lo");
+        System.out.println(str1 == str2);
+
+
+//        String str1 = "heLlo world";
+//        String str2 = "  hello world1   ";
 //        String str2 = new String(str1.toCharArray(), -2, -2);
 //        boolean b = str1.contentEquals(str2);
 
@@ -27,8 +39,8 @@ public class StrTest {
 //        System.out.println(str1.equals(str1.trim()));
 //        String.format(str1, );
 //        Boolean b = false;
-        String intern = str1.intern();
-        System.out.println(intern);
+//        String intern = str1.intern();
+//        System.out.println(intern);
 
 
     }
