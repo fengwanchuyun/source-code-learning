@@ -64,6 +64,7 @@ public class BoyerMooreSearch {
         return bad_table;
     }
 
+    //TODO 一定要把这块搞懂了
     /**
      * 初始化好后缀数组
      * @param pattern
@@ -143,7 +144,7 @@ public class BoyerMooreSearch {
 
     public static void main(String[] args) {
         String txt = "THIS IS A BIIG TIGER";
-        String pat = "A";
+        String pat = "GER";
         int pattern = pattern(pat, txt);
         System.out.println(pattern);
     }

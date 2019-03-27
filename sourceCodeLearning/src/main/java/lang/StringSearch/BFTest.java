@@ -22,7 +22,7 @@ public class BFTest {
      *      （详见:https://www.cnblogs.com/gaochundong/p/boyer_moore_string_matching_algorithm.html）
      *      特点：
      *          1.BM算法会对target进行预处理
-     *          2.预处理需要 O(m + σ) 的时间和空间复杂度
+     *          2.预处理需要 O(m + sigma) 的时间和空间复杂度  sigma：字符集大小，一般为256
      *          3.匹配阶段需要 O(m + n) 的时间复杂度
      *          4.匹配阶段在最坏的情况下需要进行3n次字符比较
      *          5.最优复杂度是 O(n/m)
