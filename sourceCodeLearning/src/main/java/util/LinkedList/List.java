@@ -1,6 +1,5 @@
-package util;
+package util.LinkedList;
 
-import java.util.function.Consumer;
 
 public class List<Type> {
     // not mandatory to set max size
@@ -320,13 +319,6 @@ public class List<Type> {
         return sb.toString();
     }
 
-    public void traverseList(Consumer<Node<Type>> consumer) {
-        Node<Type> someNode = this.head;
-        while (someNode != null) {
-            consumer.accept(someNode);
-            someNode = someNode.getLink();
-        }
-    }
 
     public int indexOf(Type data) {
         Node<Type> someNode = this.head;
@@ -363,19 +355,17 @@ public class List<Type> {
         return "Index: "+index+", Size: "+size;
     }
     Node<Type> node(int index) {
-        return null;
-//        // assert isElementIndex(index);
-//
-//        if (index < (size >> 1)) {
-//            Node<Type> x = head;
-//            for (int i = 0; i < index; i++)
-//                x = x.getLink();
-//            return x;
-//        } else {
-//            Node<Type> x = tail;
-//            for (int i = size - 1; i > index; i--)
-//                x = x.prev;
-//            return x;
-//        }
+        Node<Type> x = head;
+        if(index == 0){
+            return head;
+        }else if(index == size){
+            return tail;
+        }else {
+            for (int i = 0; i < index; i++)
+                x = x.getLink();
+            return x;
+        }
+
+//        return null;
     }
 }
