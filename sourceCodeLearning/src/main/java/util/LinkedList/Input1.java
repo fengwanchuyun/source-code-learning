@@ -9,22 +9,15 @@ public class Input1 {
     public static void main(String[] args)throws IOException
     {
         Scanner sf = new Scanner(new File("/Users/zenmen/Documents/media_source.txt"));
-//        int maxInd = -1;
-//        String text[] =new String[2000];
+
         String text = "";
         while(sf.hasNext())
         {
-//            maxInd++;
-//            text[maxInd] = sf.nextLine().toLowerCase();
             text = text+sf.nextLine().toLowerCase();
 
         }
         sf.close();
-//        for(int j = 0; j<=maxInd;j++)
-//        {
-            System.out.println((text));
-//        }
-
+        System.out.println((text));
         List<Character> list = new List<>();
 
         for (Character i : text.toCharArray()){
@@ -32,14 +25,6 @@ public class Input1 {
             System.out.print(i);
         }
 
-
-
-//        for (String str: Arrays.asList(text)) {
-//            list.InsertAfter(str);
-//        }
-//        for (char i : list.toString().toCharArray()){
-//            System.out.print(i);
-//        }
         Scanner rbReader = new Scanner(System.in);
         System.out.println("Please enter in a pattern: ");
         String inputString = rbReader.next();

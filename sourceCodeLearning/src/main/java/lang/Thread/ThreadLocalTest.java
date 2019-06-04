@@ -12,6 +12,9 @@ public class ThreadLocalTest {
         //JDK建议将ThreadLocal变量定义成private static的，这样的话ThreadLocal的生命周期就更长，由于一直存在ThreadLocal的强引用，
         // 所以ThreadLocal也就不会被回收，也就能保证任何时候都能根据ThreadLocal的弱引用访问到Entry的value值，然后remove它，防止内存泄露。
 
+        //解决hash冲突的方式效率低
+
+
 
         ThreadLocal<String> threadLocal = new ThreadLocal<>();
         threadLocal.set("MainThreadValue");
